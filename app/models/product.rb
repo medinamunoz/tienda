@@ -1,4 +1,10 @@
 class Product < ApplicationRecord
+
+scope :premium_search, -> {where(premium: true)}
+
+scope :last_n, -> (n){order('id DESC').limit(n)}
+
+
   belongs_to :category
   validates :cost, presence: true
   before_save :default_value
